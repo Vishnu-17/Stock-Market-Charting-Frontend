@@ -8,7 +8,7 @@ import { Sector } from '../models/Sector';
 })
 @Injectable()
 export class SectorService {
-  private baseUrl = 'https://demo-010.herokuapp.com/';
+  private baseUrl = 'https://stock-market-backend-app.herokuapp.com/';
   constructor(private http:HttpClient) { }
 
   getAllSectors():Observable<Sector[]>{

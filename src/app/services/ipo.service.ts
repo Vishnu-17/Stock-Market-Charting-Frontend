@@ -8,7 +8,7 @@ import { IPO } from '../models/IPO';
 })
 @Injectable()
 export class IpoService {
-  private baseUrl = 'https://demo-010.herokuapp.com/';
+  private baseUrl = 'https://stock-market-backend-app.herokuapp.com/';
   constructor(private http:HttpClient) { }
 
   getAllIpos():Observable<IPO[]>{

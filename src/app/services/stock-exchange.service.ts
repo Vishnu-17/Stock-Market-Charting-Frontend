@@ -8,7 +8,7 @@ import { StockExchange } from '../models/StockExchange';
 })
 @Injectable()
 export class StockExchangeService {
-  private baseUrl = 'https://demo-010.herokuapp.com/';
+  private baseUrl = 'https://stock-market-backend-app.herokuapp.com/';
 
   constructor(private http:HttpClient) { }
 
