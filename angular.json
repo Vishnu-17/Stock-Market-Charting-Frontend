@@ -31,9 +31,6 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               {
                 "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
-              },
-              {
-                "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
               }
             ],
             "scripts": [
