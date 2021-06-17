@@ -1,0 +1,43 @@
+<app-home *ngIf="isAdmin"></app-home>
+<button [routerLink]="['/ipos']" routerLinkActive="router-link-active" class="btn btn-primary" *ngIf="isAdmin">
+    Back to List of IPOs
+</button>
+
+<div *ngIf="!isAdmin">
+  <h4>You are not Authorized to access this page</h4>
+  <button class="btn btn-primary" [routerLink]="['/home']" routerLinkActive="router-link-active" >
+  Click to redirect to Homepage
+  </button>
+</div>
+
+
+<div class="card" style="width: 50rem; text-align: center; margin-left: 25%;" *ngIf="isAdmin">
+    <div class="card-body">
+        <h5 class="card-title">Add IPO</h5>
+<form #addIpo="ngForm">
+    <div class="form-group">
+        <input type="text" class="form-control" name="companyName" placeholder="Company Name" #companyName = "ngModel" [(ngModel)]="ipo.companyName">
+      </div>
+      <br>
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="stockExchangeName" placeholder="Stock Exchange Name" #stockExchangeName="ngModel" [(ngModel)]="ipo.stockExchangeName">
+    </div>
+    <br>
+    
+      <div class="form-group">
+          <label>Price per Share</label>
+        <input type="number" class="form-control" name="price" placeholder="0" #price="ngModel" [(ngModel)]="ipo.price">
+      </div>
+      <br>
+      <div class="form-group">
+          <label>Shares</label>
+        <input type="number" class="form-control" name="shares" placeholder="0" #shares="ngModel" [(ngModel)]="ipo.shares">
+      </div>
+      <br>
+      <div *ngIf="!isEdit"><button type="submit" value="submit" class="btn btn-primary" (click)="onClickSubmit(addIpo.value)">Save</button></div>
+    <div *ngIf="isEdit"><button type="submit" value="submit" class="btn btn-warning" (click)="onClickUpdate(addIpo.value)">update</button></div>
+    
+  </form>
+</div>
+</div>
