@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { Company } from 'src/app/models/Company';
 import { CompanyService } from 'src/app/services/company.service';
+import { SectorService } from 'src/app/services/sector.service';
+import { StockExchangeService } from 'src/app/services/stock-exchange.service';
 
 @Component({
   selector: 'app-create-company',
@@ -23,9 +25,13 @@ export class CreateCompanyComponent implements OnInit {
     sectorName: '',
     description: ''
   };
- 
+  public BSE:String;
+  public NSE:String;
+  bse:string = "NOT";
+  nse:string = "NOT";
+  companies:Company[];
 
-  constructor(private companyservice:CompanyService,public auth:AuthService) { }
+  constructor(private companyservice:CompanyService,public auth:AuthService,private stockExchangeService:StockExchangeService,private sectorService:SectorService) { }
 
   ngOnInit(): void {
     this.companyId = window.localStorage.getItem("editCompanyId")!
@@ -52,7 +58,17 @@ export class CreateCompanyComponent implements OnInit {
 
 
     onClickSubmit(data){
-      this.companyservice.createCompany(data);
+      if(this.BSE){
+        this.bse="BSE"
+      }
+      if(this.NSE){
+        this.nse="NSE"
+      }
+      this.companyservice.createCompany(data).subscribe(res=>{
+        this.stockExchangeService.addCompanyToStockExchange(this.bse,res)
+        this.stockExchangeService.addCompanyToStockExchange(this.nse,res)
+        this.sectorService.addCompanyToSector(res.sectorName,res)
+      })  
     }
 
     onClickUpdate(data){

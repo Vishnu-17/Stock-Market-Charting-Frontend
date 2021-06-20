@@ -71,6 +71,13 @@ export class ImportDataComponent implements OnInit {
       this.fromDate = this.stockPrices[0].date;
       this.toDate = this.stockPrices[this.numberOfRecords-1].date;
       this.isUploaded = true;
+
+      for(var i=0;i<this.numberOfRecords;i++){
+        this.stockPriceService.createStockPrice(this.stockPrices[i]).subscribe(res=>{
+          console.log(res)
+         this.companyService.addStockPriceToCompany(this.companyCode,res)
+        })
+      }
   }
  
 }

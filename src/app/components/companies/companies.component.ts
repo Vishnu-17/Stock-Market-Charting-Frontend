@@ -5,16 +5,20 @@ import { CompanyService } from '../../services/company.service';
 import { StockPriceService } from '../../services/stock-price.service';
 import{Router} from '@angular/router'
 import { AuthService } from '@auth0/auth0-angular';
+import { StockExchangeService } from 'src/app/services/stock-exchange.service';
+import { SectorService } from 'src/app/services/sector.service';
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
   styleUrls: ['./companies.component.css']
 })
+
+//single file deployment repo
 export class CompaniesComponent implements OnInit {
   stockPrice: StockPrice[];
   companies: Company[];
   isAdmin:boolean;
-  constructor(private stockPriceService:StockPriceService,private companyService:CompanyService,private router:Router,public auth:AuthService) { }
+  constructor(private stockPriceService:StockPriceService,private companyService:CompanyService,private router:Router,public auth:AuthService,private stockExchangeService:StockExchangeService,private sectorService:SectorService) { }
 
   ngOnInit(): void {
     this.getAllStockPrice();
